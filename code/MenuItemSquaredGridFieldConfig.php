@@ -1,24 +1,21 @@
 <?php
 
-/**
- * Class MenuItemSquaredGridFieldConfig
- */
-class MenuItemSquaredGridFieldConfig extends GridFieldConfig_RecordEditor
+namespace Marketo\Heyday\Extensions;
+
+use SilverStripe\Forms\Form;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\Forms\GridField\GridField;
+
+class MenuAdminSquared extends DataExtension
 {
-    /**
-     * @param int $itemsPerPage
-     */
-    public function __construct($itemsPerPage = 25)
+    public function updateEditForm(Form $form)
     {
-        parent::__construct($itemsPerPage);
+        $fields = $form->Fields();
+        $MenuSet = $fields->dataFieldByName('MenuSet');
 
-        $this->removeComponentsByType('GridFieldAddNewButton');
-
-        $this->addComponent(new GridFieldOrderableRows('Sort'));
-        $multiClass = new GridFieldAddNewMultiClass();
-        $classes = ClassInfo::subclassesFor('MenuItem');
-        $multiClass->setClasses($classes);
-
-        $this->addComponent($multiClass);
+        if ($MenuSet instanceof GridField) {
+            $MenuSetConfig = $MenuSet->getConfig();
+            $MenuSetConfig->removeComponentsByType('GridFieldAddNewButton');
+        }
     }
 }

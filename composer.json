@@ -4,9 +4,9 @@
     "type": "silverstripe-module",
     "keywords": ["silverstripe", "menu", "manager"],
     "require": {
-        "silverstripe/framework": "3.*",
         "composer/installers": "*",
-        "heyday/silverstripe-menumanager": "~2.2.1"
+        "silverstripe/framework": "^4.5",
+        "heyday/silverstripe-menumanager": "^3.0"
     },
     "support": {
         "issues": "https://github.com/Marketo/SilverStripe-MenuManager-Squared/issues"
